@@ -1,11 +1,11 @@
-function updateTime() {
-    const currentTimeUTC = new Date().toUTCString().split(" ")[4];
-    const currentDay = new Date().toUTCString().split(",")[0];
-    document.querySelector('[data-testid="currentTimeUTC"]').innerText = currentTimeUTC;
-    document.querySelector('[data-testid="currentDay"]').innerText = currentDay;
+function updateTimeAndDay() {
+    const now = new Date();
+    const currentTime = now.toLocaleTimeString('en-US', { hour12: false });
+    const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' });
+
+    document.getElementById('currentTime').textContent = currentTime;
+    document.getElementById('currentDay').textContent = currentDay;
 }
 
-window.onload = function() {
-    updateTime();
-    setInterval(updateTime, 1000);
-};
+updateTimeAndDay(); // Call once on page load
+setInterval(updateTimeAndDay, 1000);
